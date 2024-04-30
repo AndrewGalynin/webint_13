@@ -1,0 +1,29 @@
+receivers:
+  otlp:
+    protocols:
+      http:
+
+exporters:
+  otlp:
+    endpoint: "http://localhost:4318"
+
+# prometheus:
+#     endpoint: 0.0.0.0:8889
+
+# jaeger:
+#   endpoint: jaeger:14250
+#   tls:
+#     insecure: true
+
+# zipkin:
+#   endpoint: "http://zipkin:9411/api/v2/spans"
+#   format: proto
+
+service:
+  pipelines:
+    traces:
+      receivers: [otlp]
+      exporters: [otlp]
+    metrics:
+      receivers: [otlp]
+      exporters: [otlp]
